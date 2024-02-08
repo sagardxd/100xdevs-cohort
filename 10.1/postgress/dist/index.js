@@ -13,7 +13,7 @@ const pg_1 = require("pg");
 const client = new pg_1.Client({
     connectionString: "postgresql://sagarydv1298:Rjzv6ibCnXg3@ep-sweet-fire-a5xs39kd.us-east-2.aws.neon.tech/neondb?sslmode=require"
 });
-// --> Creating the sql table
+// Creating the sql table
 // async function createUsersTable() {
 //     await client.connect()
 //     const result = await client.query(`
@@ -25,10 +25,9 @@ const client = new pg_1.Client({
 //         created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 //     );
 //     `)
-//     console.log(result);
-// }
+//     console.log(result); }
 // createUsersTable();
-// -> Inserting a row in a table ( its the wrong way )  
+//  Inserting a row in a table ( its the wrong way )  
 // async function insertInUsersTable() {
 //     await client.connect()
 //     const result = await client.query(`
@@ -38,13 +37,23 @@ const client = new pg_1.Client({
 //     console.log(result);
 // }
 // insertInUsersTable()
-function insertInUserTable(username, email, password) {
+// inserting the right way
+// async function insertInUserTable(username: string, email: string, password: string) {
+//     await client.connect()
+//     const query = "INSERT INTO users (username, email, password) VALUES ($1, $2 , $3)";
+//     const values = [username, email , password];
+//     const res = await client.query(query, values)
+//     console.log(res);
+// }
+// insertInUserTable('sagar', 'sagar1@gmail.com', 'sagar')
+// query data in db
+function getuser(username) {
     return __awaiter(this, void 0, void 0, function* () {
         yield client.connect();
-        const query = "INSERT INTO users (username, email, password) VALUES ($1, $2 , $3)";
-        const values = [username, email, password];
+        const query = "SELECT * FROM users WHERE username = $1";
+        const values = [username];
         const res = yield client.query(query, values);
         console.log(res);
     });
 }
-insertInUserTable('sagar', 'sagar1@gmail.com', 'sagar');
+getuser('snorlxz');
