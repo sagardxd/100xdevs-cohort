@@ -24,6 +24,10 @@ const prisma = new PrismaClient();
 async function getUser(email:string){
     const res = await prisma.user.findUnique({
         where: {email},
+        select:{
+            id:true,
+            firstName:true
+        }
     })
     console.log(res)
 }

@@ -31,6 +31,10 @@ function getUser(email) {
     return __awaiter(this, void 0, void 0, function* () {
         const res = yield prisma.user.findUnique({
             where: { email },
+            select: {
+                id: true,
+                firstName: true
+            }
         });
         console.log(res);
     });
