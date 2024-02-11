@@ -11,16 +11,28 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
-function updateUser(username, { firstName, lastName }) {
+// interface UpdateParams {
+//     firstName: string;
+//     lastName: string;
+// }
+// async function updateUser(username: string, { firstName, lastName }: UpdateParams) {
+//     const res = await prisma.user.update({
+//         where: {email: username},
+//         data: {
+//             firstName,
+//             lastName
+//         }
+//     })
+//     console.log(res)
+// }
+// updateUser('sagar@gmail.com', {firstName: 'Samu', lastName: 'Yadav'})
+//getting user
+function getUser(email) {
     return __awaiter(this, void 0, void 0, function* () {
-        const res = yield prisma.user.update({
-            where: { email: username },
-            data: {
-                firstName,
-                lastName
-            }
+        const res = yield prisma.user.findUnique({
+            where: { email },
         });
         console.log(res);
     });
 }
-updateUser('sagar@gmail.com', { firstName: 'Samu', lastName: 'Yadav' });
+getUser('sagar@gmail.com');
