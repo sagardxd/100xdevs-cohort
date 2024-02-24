@@ -3,7 +3,7 @@
 export const Signin =  () =>  {
     return (
       <div>
-      Hey from SignIn component
+        sign in
       </div>
     );
   }
